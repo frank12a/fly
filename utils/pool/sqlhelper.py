@@ -28,17 +28,20 @@ class SQLHelper(object):
         result = cursor.fetchone()
         return result
     def add(self,sql, params):
+        '''单个添加数据'''
         cursor = self.cursor
         cursor.execute(sql, params)
         result=self.conn.commit()
         # result = cursor.fetchall()
         return result
     def delete(self,sql, params):
+        '''删除数据'''
         cursor = self.cursor
         cursor.execute(sql, params)
         result=self.conn.commit()
         return result
     def edit(self,sql, params):
+        '''编辑数据'''
         cursor = self.cursor
         cursor.execute(sql, params)
         result=self.conn.commit()
