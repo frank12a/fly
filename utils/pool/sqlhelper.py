@@ -27,7 +27,12 @@ class SQLHelper(object):
         cursor.execute(sql,params)
         result = cursor.fetchone()
         return result
-
+    def add(self,sql, params):
+        cursor = self.cursor
+        cursor.execute(sql, params)
+        self.conn.commit()
+        # result = cursor.fetchall()
+        return True
     def fetchall(self, sql, params):
         '''获取所有的数据'''
         cursor = self.cursor

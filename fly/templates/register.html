@@ -1,0 +1,12 @@
+{% extends 'layout.html' %}
+{% block title %}
+    用户注册
+{% endblock %}
+{% block body %}
+    <form method="post" novalidate style="padding:0  50px">
+        {% for item in form %}
+            <p>{{ item.label }}: {{ item }} {{ item.errors[0] }}</p>
+        {% endfor %}
+        <input type="submit" value="提交">
+    </form>
+{% endblock %}

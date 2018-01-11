@@ -5,7 +5,7 @@ from flask import Flask
 # from auth.auth import Auth
 from flask_session import Session
 
-from .views.login import account
+from .views.login import account#这个account是蓝图的app
 # from .views.main import main
 # from .views.user import user
 
@@ -16,7 +16,7 @@ def create_app():
     app.debug = True
     app.secret_key = 'sdiusdfsdf'
     # 设置配置文件
-    # app.config.from_object('settings.DevelopmentConfig')
+    app.config.from_object('settings.TestingConfig')
 
     # 注册蓝图
     app.register_blueprint(account)
