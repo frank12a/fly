@@ -30,9 +30,19 @@ class SQLHelper(object):
     def add(self,sql, params):
         cursor = self.cursor
         cursor.execute(sql, params)
-        self.conn.commit()
+        result=self.conn.commit()
         # result = cursor.fetchall()
-        return True
+        return result
+    def delete(self,sql, params):
+        cursor = self.cursor
+        cursor.execute(sql, params)
+        result=self.conn.commit()
+        return result
+    def edit(self,sql, params):
+        cursor = self.cursor
+        cursor.execute(sql, params)
+        result=self.conn.commit()
+        return result
     def fetchall(self, sql, params):
         '''获取所有的数据'''
         cursor = self.cursor

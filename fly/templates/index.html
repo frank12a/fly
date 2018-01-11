@@ -1,5 +1,12 @@
 {% extends 'layout.html' %}
-{% block body %}
+
 <h>欢迎：{{session.get('user_info')}}</h>
 
+{% block body %}
+   {% for row in form  %}
+       <p>{{ row.name}} --{{ row.pwd }}</p>
+    {% endfor %}
 {% endblock %}
+
+
+

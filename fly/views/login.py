@@ -57,7 +57,15 @@ def login():
 
 @account.route('/index', methods=['POST', 'GET'])
 def index():
-    return render_template('index.html')
+    if request.method=='GET':
+        with sqlhelper.SQLHelper()  as conn:
+            # sql = 'insert into userinfo22(name,pwd,repwd,email,sex,addr,hobby,favor) VALUES (%s,%s,%s,%s,%s,%s,%s,%s)'
+            rows = conn.fetchall('select * from userinfo22',())
+        print('rows', rows)
+        if rows:
+            return render_template('index.html',form=rows)
+
+
 
 
 class RegisterForm(Form):
