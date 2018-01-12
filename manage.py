@@ -2,10 +2,11 @@
 # -*- coding:utf-8 -*-
 import os
 from flask_script import Manager, Server
-from fly import create_app
-
+from fly import create_app,db
+from flask_migrate import  Migrate,MigrateCommand
 app = create_app()
 manager = Manager(app)
+migrate=Migrate(app,db)
 
 debug=True
 # @manager.command
@@ -57,6 +58,8 @@ debug=True
 #             # 获取一个单元格中的值
 #             print(col.value,end=';')
 #         print('')
+#创建命令
+manager.add_command('db',MigrateCommand)
 
 # 自定义命令
 manager.add_command("runserver", Server())

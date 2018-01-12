@@ -48,6 +48,7 @@ def login():
         with sqlhelper.SQLHelper()  as conn:
             result = conn.fetchall('select * from userinfo where name=%s and password=%s', ([name, pwd]))
 
+
         if result:
             session['user_info'] = name
             # print()

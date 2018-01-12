@@ -1,6 +1,7 @@
 from utils.pool import db_pool
 import pymysql
 
+
 class SQLHelper(object):
     ''''
     连接数据库
@@ -11,41 +12,45 @@ class SQLHelper(object):
         self.conn = None
         self.cursor = None
 
-    def open(self,cursor=pymysql.cursors.DictCursor):
+    def open(self, cursor=pymysql.cursors.DictCursor):
         '''连接数据库与建立游标连接'''
         self.conn = db_pool.POOL.connection()
-        self.cursor = self.conn.cursor(cursor=cursor)#数据是字典类型啦
+        self.cursor = self.conn.cursor(cursor=cursor)  # 数据是字典类型啦
 
     def close(self):
         '''关闭游标连接与数据库连接'''
         self.cursor.close()
         self.conn.close()
 
-    def fetchone(self,sql,params):
+    def fetchone(self, sql, params):
         '''获取单个数据'''
         cursor = self.cursor
-        cursor.execute(sql,params)
+        cursor.execute(sql, params)
         result = cursor.fetchone()
         return result
-    def add(self,sql, params):
+
+    def add(self, sql, params):
         '''单个添加数据'''
         cursor = self.cursor
         cursor.execute(sql, params)
-        result=self.conn.commit()
+        result = self.conn.commit()
         # result = cursor.fetchall()
         return result
-    def delete(self,sql, params):
+
+    def delete(self, sql, params):
         '''删除数据'''
         cursor = self.cursor
         cursor.execute(sql, params)
-        result=self.conn.commit()
+        result = self.conn.commit()
         return result
-    def edit(self,sql, params):
+
+    def edit(self, sql, params):
         '''编辑数据'''
         cursor = self.cursor
         cursor.execute(sql, params)
-        result=self.conn.commit()
+        result = self.conn.commit()
         return result
+
     def fetchall(self, sql, params):
         '''获取所有的数据'''
         cursor = self.cursor
@@ -63,7 +68,7 @@ class SQLHelper(object):
         '''上下文推出使用'''
         self.close()
 
-# with SQLHelper() as obj:
-#
-#     print(obj)
-#     print('正在执行')
+        # with SQLHelper() as obj:
+        #
+        #     print(obj)
+        #     print('正在执行')
